@@ -1,0 +1,48 @@
+system:
+  name: "VeroBrix"
+  version: "2.0"
+  mode: "sovereign_intelligence"
+
+analysis:
+  timeout_seconds: 60
+  max_document_size: "10MB"
+  enable_ml_features: false
+  enable_advanced_nlp: true
+  confidence_threshold: 0.75
+
+nlp:
+  spacy_model: "en_core_web_sm"
+  enable_advanced_processing: true
+  legal_entity_patterns: true
+
+agents:
+  jarvis:
+    enabled: true
+    performance_monitoring: true
+  friday:
+    enabled: true
+    sentiment_analysis: true
+  ultron:
+    enabled: true
+    predictive_analysis: true
+  dialogos:
+    enabled: true
+    philosophical_overlays: true
+
+logging:
+  level: "INFO"
+  file_output: true
+  provenance_tracking: true
+
+sovereignty:
+  scoring_enabled: true
+  servile_language_detection: true
+  remedy_alignment_checking: true
+
+templates:
+  directory: templates/
+  auto_reload: true
+
+document_generation:
+  output_directory: output/
+  default_format: txt

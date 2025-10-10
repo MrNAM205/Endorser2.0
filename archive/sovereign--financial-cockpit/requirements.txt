@@ -1,0 +1,23 @@
+# Core App Dependencies
+Flask
+pypdf
+reportlab
+cryptography
+pytesseract
+Pillow
+pyyaml
+requests
+
+# Cognition Engine Dependencies
+spacy
+scikit-learn
+pdfminer.six
+PyMuPDF
+joblib
+pyttsx3
+watchdog
+python-magic
+
+# Development & Testing
+ruff
+pytest

@@ -1,0 +1,16 @@
+# Environments
+.env
+.venv
+venv/
+*.env
+
+# Secrets and Keys
+APIgemini
+*.key
+*.keys
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
