@@ -1,5 +1,6 @@
 import logging
 import json
+import os
 from pathlib import Path
 from typing import Optional, Dict, Any, Union
 from io import BytesIO
@@ -28,20 +29,30 @@ except Exception as e:
 # --- Config Loader ---
 def load_config(config_path: Optional[Union[str, Path]]) -> Dict[str, Any]:
     """Load annotation config (JSON) or return defaults."""
+    default_config_path = Path(os.path.dirname(__file__)) / "config" / "default_config.json"
+    try:
+        with open(default_config_path, "r", encoding="utf-8") as f:
+            default_cfg = json.load(f)
+    except FileNotFoundError:
+        logger.warning("Default config not found, using empty defaults")
+        default_cfg = {"annotations": []}
+    except json.JSONDecodeError:
+        logger.error("Invalid JSON in default config, using empty defaults")
+        default_cfg = {"annotations": []}
+
     if config_path is None:
         logger.warning("No config provided, using defaults")
-        return {
-            "annotations": [
-                {"text": "SAMPLE", "x": 50, "y": 50, "size": 14, "color": "red"}
-            ]
-        }
+        return default_cfg
 
     config_path = Path(config_path)
     if not config_path.exists():
         raise FileNotFoundError(f"Config file not found: {config_path}")
 
-    with open(config_path, "r", encoding="utf-8") as f:
-        cfg = json.load(f)
+    try:
+        with open(config_path, "r", encoding="utf-8") as f:
+            cfg = json.load(f)
+    except json.JSONDecodeError:
+        raise ValueError("Invalid JSON in config file")
 
     if "annotations" not in cfg or not isinstance(cfg["annotations"], list):
         raise ValueError("Invalid config: must contain 'annotations' list")
@@ -224,3 +235,4 @@ def annotate(
         annotate_pdf(input_file, output_file, config)
     else:
         raise ValueError(f"Unsupported file format: {ext}")
+```

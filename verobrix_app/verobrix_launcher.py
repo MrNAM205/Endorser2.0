@@ -1,3 +1,4 @@
+```python
 import sys
 import os
 import json
@@ -23,6 +24,13 @@ class VeroBrixSystem:
     """
     
     def __init__(self):
+        """
+        Initializes the VeroBrixSystem with its core components.
+
+        This includes setting up the remedy synthesizer, situation interpreter,
+        provenance logger, and sovereignty scorer. It also ensures that the
+        necessary output directories exist and logs the system initialization.
+        """
         self.remedy_synthesizer = RemedySynthesizer()
         self.situation_interpreter = SituationInterpreter()
         self.session_id = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -47,14 +55,23 @@ class VeroBrixSystem:
     
     def analyze_situation(self, input_text: str, situation_context: dict = None) -> dict:
         """
-        Comprehensive analysis of a legal situation using all VeroBrix modules.
-        
+        Performs a comprehensive analysis of a legal situation using all VeroBrix modules.
+
         Args:
-            input_text: Raw text describing the legal situation
-            situation_context: Optional additional context
-            
+            input_text: Raw text describing the legal situation.
+            situation_context: Optional dictionary providing additional context for the situation.
+
         Returns:
-            Complete analysis results
+            A dictionary containing the complete analysis results, including:
+            - session_id: The unique identifier for the analysis session.
+            - timestamp: The date and time of the analysis.
+            - system_version: The version of the VeroBrix system used.
+            - input: The input text and context.
+            - situation_analysis: The interpreted situation.
+            - legal_analysis: Results from legal clause extraction, contradiction detection, etc.
+            - sovereignty_analysis: Sovereignty metrics for the input text and suggested remedy.
+            - remedy: The synthesized legal remedy.
+            - recommendations: Prioritized actions based on the analysis.
         """
         log_provenance("VeroBrix System", "Starting comprehensive situation analysis")
         
@@ -176,7 +193,19 @@ class VeroBrixSystem:
         return results
     
     def _generate_recommendations(self, situation: dict, legal_summary: dict, remedy: dict, sovereignty_metrics=None) -> dict:
-        """Generate prioritized recommendations based on analysis including sovereignty considerations."""
+        """
+        Generates prioritized recommendations based on the analysis, including sovereignty considerations.
+
+        Args:
+            situation: The interpreted situation.
+            legal_summary: The summary of legal risks and other legal aspects.
+            remedy: The synthesized legal remedy.
+            sovereignty_metrics: Metrics related to the sovereignty of the input text.
+
+        Returns:
+            A dictionary containing prioritized recommendations for immediate, short-term,
+            and long-term actions, as well as warnings and opportunities.
+        """
         recommendations = {
             'immediate_actions': [],
             'short_term_actions': [],
@@ -236,7 +265,7 @@ class VeroBrixSystem:
                 'long_term': ['Prepare defense strategy', 'Consider counterclaims if applicable']
             }
         }
-        
+
         if situation['type'] in situation_actions:
             actions = situation_actions[situation['type']]
             recommendations['immediate_actions'].extend(actions.get('immediate', []))
@@ -253,7 +282,12 @@ class VeroBrixSystem:
         return recommendations
     
     def _save_analysis_results(self, results: dict):
-        """Save analysis results to file."""
+        """
+        Saves the analysis results to a JSON file in the output directory.
+
+        Args:
+            results: A dictionary containing the analysis results.
+        """
         filename = f"output/verobrix_analysis_{self.session_id}.json"
         try:
             with open(filename, 'w', encoding='utf-8') as f:
@@ -263,16 +297,35 @@ class VeroBrixSystem:
             log_provenance("VeroBrix System", f"Error saving results: {e}")
     
     def generate_document(self, template_name: str, variables: dict) -> str:
-        """Generate a legal document using the remedy synthesizer."""
+        """
+        Generates a legal document using the remedy synthesizer.
+
+        Args:
+            template_name: The name of the document template to use.
+            variables: A dictionary containing the variables to populate the template.
+
+        Returns:
+            The generated legal document as a string.
+        """
         log_provenance("VeroBrix System", f"Generating document: {template_name}")
         return self.remedy_synthesizer.generate_document(template_name, variables)
     
     def get_available_templates(self) -> list:
-        """Get list of available document templates."""
+        """
+        Gets a list of available document templates from the remedy synthesizer.
+
+        Returns:
+            A list of available document template names.
+        """
         return self.remedy_synthesizer.get_available_templates()
     
     def print_analysis_summary(self, results: dict):
-        """Print a formatted summary of the analysis results including sovereignty analysis."""
+        """
+        Prints a formatted summary of the analysis results, including sovereignty analysis.
+
+        Args:
+            results: A dictionary containing the analysis results.
+        """
         print("\n" + "="*60)
         print("VEROBRIX SOVEREIGN INTELLIGENCE ANALYSIS")
         print("="*60)
@@ -406,3 +459,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+```

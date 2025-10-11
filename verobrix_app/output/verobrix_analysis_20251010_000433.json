@@ -1,0 +1,135 @@
+{
+  "session_id": "20251010_000433",
+  "timestamp": "2025-10-10T00:04:33.315550",
+  "system_version": "VeroBrix v2.1 - Dynamic Agent Architecture",
+  "input": {
+    "raw_text": "This is a sample document for testing the VeroBrix system.",
+    "context": null
+  },
+  "situation_analysis": {
+    "type": "general",
+    "raw_input": "This is a sample document for testing the VeroBrix system.",
+    "normalized_text": "this is a sample document for testing the verobrix system.",
+    "entities": {
+      "people": [
+        "this is",
+        "sample document",
+        "for testing",
+        "the verobrix"
+      ],
+      "organizations": [],
+      "locations": [],
+      "dates": [],
+      "amounts": [],
+      "identifiers": [],
+      "legal_instruments": []
+    },
+    "jurisdiction": {
+      "primary": "unknown",
+      "secondary": [],
+      "indicators": [],
+      "confidence": 0.0
+    },
+    "relationships": [],
+    "key_facts": [],
+    "urgency": {
+      "level": "medium",
+      "indicators": [],
+      "timeline": null
+    },
+    "timestamp": "2025-10-10T00:04:33.308092",
+    "context": {},
+    "legal_framework": [
+      "General law"
+    ],
+    "potential_issues": [],
+    "required_actions": [
+      "Seek legal counsel",
+      "Document situation"
+    ]
+  },
+  "legal_analysis": {
+    "clauses": [],
+    "contradictions": [],
+    "legal_structure": {
+      "definitions": [],
+      "obligations": [],
+      "rights": [],
+      "procedures": [],
+      "penalties": []
+    },
+    "tone_analysis": {
+      "overall_score": 0.5,
+      "tone_category": "neutral"
+    },
+    "legal_risks": [],
+    "legal_summary": {
+      "risk_level": "LOW",
+      "tone_summary": "neutral",
+      "recommendations": []
+    }
+  },
+  "sovereignty_analysis": {
+    "input_sovereignty": {
+      "overall_score": 0.5,
+      "language_score": 0.5,
+      "remedy_score": 0.5,
+      "autonomy_score": 0.5,
+      "sovereignty_level": "Transitional",
+      "servile_flags_count": 0,
+      "sovereign_indicators_count": 0,
+      "improvement_suggestions": [
+        "Include more sovereign language patterns (authority challenges, constitutional assertions)",
+        "Focus on lawful remedies (restitution, specific performance) rather than punitive measures",
+        "Emphasize self-determination and autonomous decision-making"
+      ]
+    },
+    "remedy_sovereignty": {
+      "overall_score": 0.5,
+      "language_score": 0.5,
+      "remedy_score": 0.5,
+      "autonomy_score": 0.5,
+      "sovereignty_level": "Transitional",
+      "improvement_suggestions": [
+        "Include more sovereign language patterns (authority challenges, constitutional assertions)",
+        "Focus on lawful remedies (restitution, specific performance) rather than punitive measures",
+        "Emphasize self-determination and autonomous decision-making"
+      ]
+    }
+  },
+  "remedy": {
+    "situation_type": "general",
+    "risk_assessment": "LOW",
+    "recommended_actions": [
+      "Analyze the legal relationship",
+      "Identify all parties and their capacity",
+      "Determine applicable law and jurisdiction",
+      "Assert all available rights and defenses"
+    ],
+    "document_templates": [],
+    "legal_strategies": [
+      "Challenge assumptions and presumptions",
+      "Demand proof of all claims",
+      "Assert due process rights",
+      "Reserve all rights and remedies"
+    ],
+    "procedural_steps": [],
+    "supporting_law": [],
+    "timeline": [],
+    "warnings": []
+  },
+  "recommendations": {
+    "immediate_actions": [],
+    "short_term_actions": [],
+    "long_term_actions": [],
+    "warnings": [],
+    "opportunities": [
+      "SOVEREIGNTY OPPORTUNITY: Language shows transitional sovereignty - can be improved"
+    ],
+    "sovereignty_improvements": [
+      "Include more sovereign language patterns (authority challenges, constitutional assertions)",
+      "Focus on lawful remedies (restitution, specific performance) rather than punitive measures",
+      "Emphasize self-determination and autonomous decision-making"
+    ]
+  }
+}

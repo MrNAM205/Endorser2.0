@@ -3,6 +3,13 @@ system:
   version: "2.0"
   mode: "sovereign_intelligence"
 
+paths:
+  intake: "intake/"
+  output: "output/"
+  logs: "logs/"
+  provenance_logs: "logs/provenance/"
+  templates: "templates/"
+
 analysis:
   timeout_seconds: 60
   max_document_size: "10MB"

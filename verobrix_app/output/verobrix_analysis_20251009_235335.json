@@ -1,0 +1,146 @@
+{
+  "session_id": "20251009_235335",
+  "timestamp": "2025-10-09T23:53:35.018569",
+  "system_version": "VeroBrix v2.0 - Sovereign Modular Intelligence",
+  "input": {
+    "raw_text": "This is a sample document for testing the VeroBrix system.",
+    "context": null
+  },
+  "situation_analysis": {
+    "type": "general",
+    "raw_input": "This is a sample document for testing the VeroBrix system.",
+    "normalized_text": "this is a sample document for testing the verobrix system.",
+    "entities": {
+      "people": [
+        "this is",
+        "sample document",
+        "for testing",
+        "the verobrix"
+      ],
+      "organizations": [],
+      "locations": [],
+      "dates": [],
+      "amounts": [],
+      "identifiers": [],
+      "legal_instruments": []
+    },
+    "jurisdiction": {
+      "primary": "unknown",
+      "secondary": [],
+      "indicators": [],
+      "confidence": 0.0
+    },
+    "relationships": [],
+    "key_facts": [],
+    "urgency": {
+      "level": "medium",
+      "indicators": [],
+      "timeline": null
+    },
+    "timestamp": "2025-10-09T23:53:35.010180",
+    "context": {},
+    "legal_framework": [
+      "General law"
+    ],
+    "potential_issues": [],
+    "required_actions": [
+      "Seek legal counsel",
+      "Document situation"
+    ]
+  },
+  "legal_analysis": {
+    "clauses": [
+      "This is a sample document for testing the VeroBrix system."
+    ],
+    "contradictions": [],
+    "legal_structure": {
+      "definitions": [],
+      "obligations": [],
+      "rights": [],
+      "procedures": [],
+      "penalties": []
+    },
+    "tone_analysis": {
+      "legal_positive": 0,
+      "legal_negative": 0,
+      "general_positive": 0,
+      "general_negative": 0,
+      "neutral_legal": 0,
+      "overall_score": 0,
+      "tone_category": "neutral",
+      "key_indicators": []
+    },
+    "legal_risks": [],
+    "legal_summary": {
+      "text_length": 58,
+      "word_count": 10,
+      "tone_summary": "neutral",
+      "risk_level": "LOW",
+      "key_findings": [],
+      "recommendations": []
+    }
+  },
+  "sovereignty_analysis": {
+    "input_sovereignty": {
+      "overall_score": 0.5,
+      "language_score": 0.5,
+      "remedy_score": 0.5,
+      "autonomy_score": 0.5,
+      "sovereignty_level": "Transitional",
+      "servile_flags_count": 0,
+      "sovereign_indicators_count": 0,
+      "improvement_suggestions": [
+        "Include more sovereign language patterns (authority challenges, constitutional assertions)",
+        "Focus on lawful remedies (restitution, specific performance) rather than punitive measures",
+        "Emphasize self-determination and autonomous decision-making"
+      ]
+    },
+    "remedy_sovereignty": {
+      "overall_score": 0.5,
+      "language_score": 0.5,
+      "remedy_score": 0.5,
+      "autonomy_score": 0.5,
+      "sovereignty_level": "Transitional",
+      "improvement_suggestions": [
+        "Include more sovereign language patterns (authority challenges, constitutional assertions)",
+        "Focus on lawful remedies (restitution, specific performance) rather than punitive measures",
+        "Emphasize self-determination and autonomous decision-making"
+      ]
+    }
+  },
+  "remedy": {
+    "situation_type": "general",
+    "risk_assessment": "LOW",
+    "recommended_actions": [
+      "Analyze the legal relationship",
+      "Identify all parties and their capacity",
+      "Determine applicable law and jurisdiction",
+      "Assert all available rights and defenses"
+    ],
+    "document_templates": [],
+    "legal_strategies": [
+      "Challenge assumptions and presumptions",
+      "Demand proof of all claims",
+      "Assert due process rights",
+      "Reserve all rights and remedies"
+    ],
+    "procedural_steps": [],
+    "supporting_law": [],
+    "timeline": [],
+    "warnings": []
+  },
+  "recommendations": {
+    "immediate_actions": [],
+    "short_term_actions": [],
+    "long_term_actions": [],
+    "warnings": [],
+    "opportunities": [
+      "SOVEREIGNTY OPPORTUNITY: Language shows transitional sovereignty - can be improved"
+    ],
+    "sovereignty_improvements": [
+      "Include more sovereign language patterns (authority challenges, constitutional assertions)",
+      "Focus on lawful remedies (restitution, specific performance) rather than punitive measures",
+      "Emphasize self-determination and autonomous decision-making"
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "session_id": "b674c478-03b0-4fe3-91f0-6691361d30f5",
+  "start_time": "2025-10-10T00:02:17.723101",
+  "system_version": "VeroBrix v2.0 - Sovereign Modular Intelligence",
+  "provenance_version": "1.0",
+  "entries": [
+    {
+      "entry_id": "8a6a167e-d7a1-4c76-9387-0d75b5246883",
+      "timestamp": "2025-10-10T00:02:17.723799",
+      "session_id": "b674c478-03b0-4fe3-91f0-6691361d30f5",
+      "agent_name": "VeroBrixSystem",
+      "human_operator": null,
+      "system_version": "VeroBrix v2.0",
+      "action_type": "system_init",
+      "action_description": "VeroBrix Sovereign Intelligence System initialized - Session: 20251010_000217",
+      "input_hash": null,
+      "output_hash": null,
+      "document_path": null,
+      "legal_context": null,
+      "sovereignty_score": null,
+      "confidence_level": null,
+      "parent_entry_id": null,
+      "related_entries": [],
+      "entry_hash": "fc784d35849dd3f9"
+    }
+  ],
+  "last_updated": "2025-10-10T00:02:17.724030"
+}

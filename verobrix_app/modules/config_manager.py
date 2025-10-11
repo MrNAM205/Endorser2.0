@@ -248,6 +248,26 @@ class ConfigManager:
     def get_max_document_size(self) -> str:
         """Get the configured maximum document size."""
         return self.get('analysis.max_document_size', '10MB')
+
+    @property
+    def app_root(self) -> Path:
+        """Get the application root directory."""
+        # Assumes config file is in {app_root}/config/verobrix.yaml
+        if self._config_file_path:
+            return Path(self._config_file_path).parent.parent
+        return Path(__file__).parent.parent
+
+    def get_intake_path(self) -> str:
+        """Get the absolute path to the intake directory."""
+        return str(self.app_root / self.get('paths.intake', 'intake/'))
+
+    def get_output_path(self) -> str:
+        """Get the absolute path to the output directory."""
+        return str(self.app_root / self.get('paths.output', 'output/'))
+
+    def get_logs_path(self) -> str:
+        """Get the absolute path to the logs directory."""
+        return str(self.app_root / self.get('paths.logs', 'logs/'))
     
     def is_debug_mode(self) -> bool:
         """Check if debug mode is enabled."""
