@@ -1,55 +1,54 @@
-from agents.base_agent import BaseAgent
-from typing import Any, Dict, List
+# verobrix_app/agents/JARVIS/jarvis_agent.py
+"""
+JARVIS Agent:
+- Clause extraction
+- Contradiction detection
+- Legal structure analysis
+"""
 
-class JarvisAgent(BaseAgent):
-    """
-    Procedural, logical, system-integrated analysis agent.
-    """
-    
-    def get_capabilities(self) -> List[str]:
-        return ["extract_clauses", "detect_contradictions", "analyze_legal_structure"]
+class JarvisAgent:
+    def __init__(self, text):
+        self.text = text
 
-    def analyze(self, input_data: str, context: Dict[str, Any] = None) -> Dict[str, Any]:
+    def extract_clauses(self):
         """
-        Performs a full structural and logical analysis of the input text.
+        Extracts legal clauses from the text.
         """
-        clauses = self._extract_clauses(input_data)
-        contradictions = self._detect_contradictions(clauses)
-        legal_structure = self._analyze_legal_structure(input_data)
+        # Placeholder
+        print("JARVIS: Extracting clauses...")
+        return ["Clause 1: ...", "Clause 2: ..."]
+
+    def detect_contradictions(self, clauses):
+        """
+        Detects contradictions between clauses.
+        """
+        # Placeholder
+        print("JARVIS: Detecting contradictions...")
+        return [{"type": "structural", "description": "Clause 1 contradicts Clause 2."}]
+
+    def analyze_structure(self):
+        """
+        Analyzes the legal structure of the document.
+        """
+        # Placeholder
+        print("JARVIS: Analyzing legal structure...")
+        return {"format": "Standard Contract", "elements": ["Preamble", "Definitions", "Body", "Signatures"]}
+
+    def run_analysis(self):
+        """
+        Runs the full analysis pipeline for JARVIS.
+        """
+        structure = self.analyze_structure()
+        clauses = self.extract_clauses()
+        contradictions = self.detect_contradictions(clauses)
         
         return {
+            "structure": structure,
             "clauses": clauses,
-            "contradictions": contradictions,
-            "legal_structure": legal_structure
+            "contradictions": contradictions
         }
 
-    def _extract_clauses(self, text: str) -> List[str]:
-        """Extracts legal clauses from text (placeholder)."""
-        # Placeholder implementation
-        return [line for line in text.split('\n') if 'clause' in line.lower()]
-
-    def _detect_contradictions(self, clauses: List[str]) -> List[Dict[str, Any]]:
-        """Detects contradictions between clauses (placeholder)."""
-        # Placeholder implementation
-        return []
-
-    def _analyze_legal_structure(self, text: str) -> Dict[str, List[str]]:
-        """Analyzes the legal structure of a document (placeholder)."""
-        # Placeholder implementation
-        return {
-            "definitions": [],
-            "obligations": [],
-            "rights": [],
-            "procedures": [],
-            "penalties": []
-        }
-
-# Standalone functions for backward compatibility if needed, though not used by AgentManager
-def extract_clauses(text: str) -> List[str]:
-    return JarvisAgent()._extract_clauses(text)
-
-def detect_contradictions(clauses: List[str]) -> List[Dict[str, Any]]:
-    return JarvisAgent()._detect_contradictions(clauses)
-
-def analyze_legal_structure(text: str) -> Dict[str, List[str]]:
-    return JarvisAgent()._analyze_legal_structure(text)
+if __name__ == '__main__':
+    agent = JarvisAgent("Sample contract text...")
+    analysis_result = agent.run_analysis()
+    print(analysis_result)
