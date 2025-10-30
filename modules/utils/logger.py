@@ -1,8 +1,7 @@
 
 import logging
 import os
-from modules.config_manager import config_manager
-
+from modules.config.config_manager import config_manager
 def setup_logger(name, log_file, level=logging.INFO):
     """Function to setup as many loggers as you want"""
     # Create logs directory if it doesn't exist

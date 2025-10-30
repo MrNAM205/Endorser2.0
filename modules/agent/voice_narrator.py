@@ -1,6 +1,6 @@
 import pyttsx3
-from modules.config_manager import config_manager
-from modules.logger import system_logger
+from modules.config.config_manager import config_manager
+from modules.utils.logger import system_logger
 
 class VoiceNarrator:
     def __init__(self):

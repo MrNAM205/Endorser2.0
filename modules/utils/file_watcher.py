@@ -4,8 +4,8 @@ import os
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
-from modules.voice_narrator import narrator
-from modules.nlp_processor import nlp_processor
+from modules.agent.voice_narrator import narrator
+from modules.nlp.nlp_processor import nlp_processor
 from modules.logger import system_logger, log_provenance
 from modules.config_manager import config_manager
 

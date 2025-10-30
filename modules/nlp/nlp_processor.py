@@ -1,5 +1,5 @@
 import spacy
-from modules.config_manager import config_manager
+from modules.config.config_manager import config_manager
 from modules.logger import system_logger
 
 class NlpProcessor:
