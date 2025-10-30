@@ -10,30 +10,39 @@ class ProvenanceLogger:
     def __init__(self, log_file="provenance.log"):
         self.log_file = log_file
 
-    def log_action(self, agent_name, action, context, input_data, output_data):
+    def log_action(self, agent_name: str, action_type: str, action_description: str, **kwargs):
         """
-        Logs an action performed by an agent.
+        Logs an action performed by an agent using a flexible set of details.
         """
         log_entry = {
             "timestamp": datetime.datetime.utcnow().isoformat(),
             "agent": agent_name,
-            "action": action,
-            "context": context,
-            "input": input_data,
-            "output": output_data
+            "action_type": action_type,
+            "description": action_description,
+            **kwargs
         }
         
-        with open(self.log_file, 'a') as f:
-            f.write(json.dumps(log_entry) + '\n')
-        
-        print(f"Logged action '{action}' by agent '{agent_name}'.")
+        try:
+            with open(self.log_file, 'a') as f:
+                f.write(json.dumps(log_entry) + '\n')
+            
+            print(f"Logged action '{action_type}' by agent '{agent_name}'.")
+        except Exception as e:
+            print(f"Error writing to provenance log: {e}")
 
 if __name__ == '__main__':
-    logger = ProvenanceLogger()
+    # Example usage matching verobrix_core.py
+    logger = ProvenanceLogger(log_file="test_provenance.log")
     logger.log_action(
-        agent_name="JARVIS",
-        action="Contradiction Detection",
-        context="Analyzing a sample contract.",
-        input_data={"text_snippet": "Clause 5 contradicts Clause 12."},
-        output_data={"contradiction_found": True, "type": "structural"}
+        agent_name="VeroBrixSystem",
+        action_type="system_init",
+        action_description="System initialized."
     )
+    logger.log_action(
+        agent_name="JarvisAgent",
+        action_type="analysis",
+        action_description="Extracted 3 clauses.",
+        input_data={"text_len": 1024},
+        output_data={"clauses_found": 3}
+    )
+

@@ -1,1 +1,7 @@
-This is a sample document for testing the VeroBrix system.
+To: John Doe
+From: Big Corp Collections
+Date: 2025-10-10
+
+NOTICE OF OUTSTANDING DEBT
+
+This is a friendly reminder that your account is past due. The amount of $100.00 is outstanding. Please submit payment immediately to avoid further action. We request you contact our office to arrange payment. As a person, you are responsible for this debt. Failure to pay will result in consequences.

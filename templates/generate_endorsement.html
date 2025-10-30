@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Endorsement</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 600px; margin: auto; background: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,.1); }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"] { width: calc(100% - 22px); padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px; }
+        button { padding: 10px 15px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Generate Payment Coupon Endorsement Instructions</h1>
+        <form action="/generate_endorsement" method="post">
+            <input type="hidden" name="original_pdf_path" value="{{ original_pdf_path }}">
+
+            <label for="your_name">Your Name:</label>
+            <input type="text" id="your_name" name="your_name" value="{{ your_name }}" required>
+
+            <label for="bill_from">Bill From (Company Name):</label>
+            <input type="text" id="bill_from" name="bill_from" value="{{ bill_from }}" required>
+
+            <label for="bill_amount">Bill Amount:</label>
+            <input type="text" id="bill_amount" name="bill_amount" value="{{ bill_amount }}" required>
+
+            <label for="account_number">Account Number:</label>
+            <input type="text" id="account_number" name="account_number" value="{{ account_number }}" required>
+
+            <label for="your_name_all_caps">Your Name in ALL CAPS (for endorsement):</label>
+            <input type="text" id="your_name_all_caps" name="your_name_all_caps" required>
+
+            <button type="submit">Generate Endorsement Overlay PDF</button>
+        </form>
+        <p><a href="/">Back to Home</a></p>
+    </div>
+</body>
+</html>

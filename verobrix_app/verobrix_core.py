@@ -4,15 +4,25 @@ import json
 from datetime import datetime
 
 # Add modules to path
+# This is generally not best practice, but we'll keep it for now to avoid breaking execution.
+# A better solution would be to use a proper package installation (e.g., with setup.py or pyproject.toml).
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '.')))
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'modules')))
 
-from agents.JARVIS.jarvis_agent import extract_clauses, detect_contradictions, analyze_legal_structure
-from agents.FRIDAY.friday_agent import interpret_tone, analyze_legal_risk, generate_legal_summary
-from modules.remedy_synthesizer import RemedySynthesizer
+# Core Components
+from agents.JARVIS.jarvis_agent import JarvisAgent
+from agents.FRIDAY.friday_agent import FridayAgent
 from modules.situation_interpreter import SituationInterpreter
-from modules.provenance_logger import get_provenance_logger
-from modules.sovereignty_scorer import get_sovereignty_scorer
+from modules.remedy_synthesizer import RemedySynthesizer
+from modules.sovereignty_scorer import SovereigntyScorer
+from modules.provenance_logger import ProvenanceLogger
+
+# Extensibility Roadmap Components
+from contradiction_detector import ContradictionDetector
+from ucc_mapper import UccMapper
+from remittance_engine import RemittanceEngine
+from semantic_overlay import SemanticOverlay
+from sovereignty_dashboard import SovereigntyDashboard
 
 class VeroBrixSystem:
     """
@@ -25,18 +35,14 @@ class VeroBrixSystem:
     def __init__(self):
         """
         Initializes the VeroBrixSystem with its core components.
-
-        This includes setting up the remedy synthesizer, situation interpreter,
-        provenance logger, and sovereignty scorer. It also ensures that the
-        necessary output directories exist and logs the system initialization.
         """
-        self.remedy_synthesizer = RemedySynthesizer()
-        self.situation_interpreter = SituationInterpreter()
         self.session_id = datetime.now().strftime("%Y%m%d_%H%M%S")
-        
+
         # Initialize sovereign architecture components
-        self.provenance_logger = get_provenance_logger()
-        self.sovereignty_scorer = get_sovereignty_scorer()
+        self.situation_interpreter = SituationInterpreter()
+        self.remedy_synthesizer = RemedySynthesizer()
+        self.sovereignty_scorer = SovereigntyScorer()
+        self.provenance_logger = ProvenanceLogger(log_file="logs/provenance/verobrix_provenance.log")
         
         # Ensure output directories exist
         os.makedirs("logs", exist_ok=True)
@@ -45,70 +51,54 @@ class VeroBrixSystem:
         
         # Log system initialization with provenance
         self.provenance_logger.log_action(
+            agent_name="VeroBrixSystem",
             action_type="system_init",
-            action_description=f"VeroBrix Sovereign Intelligence System initialized - Session: {self.session_id}",
-            agent_name="VeroBrixSystem"
+            action_description=f"VeroBrix Sovereign Intelligence System initialized - Session: {self.session_id}"
         )
     
     def analyze_situation(self, input_text: str, situation_context: dict = None) -> dict:
         """
         Performs a comprehensive analysis of a legal situation using all VeroBrix modules.
-
-        Args:
-            input_text: Raw text describing the legal situation.
-            situation_context: Optional dictionary providing additional context for the situation.
-
-        Returns:
-            A dictionary containing the complete analysis results, including:
-            - session_id: The unique identifier for the analysis session.
-            - timestamp: The date and time of the analysis.
-            - system_version: The version of the VeroBrix system used.
-            - input: The input text and context.
-            - situation_analysis: The interpreted situation.
-            - legal_analysis: Results from legal clause extraction, contradiction detection, etc.
-            - sovereignty_analysis: Sovereignty metrics for the input text and suggested remedy.
-            - remedy: The synthesized legal remedy.
-            - recommendations: Prioritized actions based on the analysis.
         """
         self.provenance_logger.log_action(agent_name="VeroBrixSystem", action_type="progress", action_description="Starting comprehensive situation analysis")
-        
+
         # Step 1: Interpret the situation
         self.provenance_logger.log_action(agent_name="VeroBrixSystem", action_type="progress", action_description="Step 1: Interpreting situation with SituationInterpreter")
         situation = self.situation_interpreter.interpret_situation(input_text, situation_context)
+
+        # Step 2: JARVIS Analysis (Clauses, Structure)
+        self.provenance_logger.log_action(agent_name="VeroBrixSystem", action_type="progress", action_description="Step 2: Running JARVIS analysis")
+        jarvis = JarvisAgent(input_text)
+        jarvis_analysis = jarvis.run_analysis()
+        clauses = jarvis_analysis['clauses']
+        legal_structure = jarvis_analysis['structure']
         
-        # Step 2: Extract clauses with JARVIS
-        self.provenance_logger.log_action(agent_name="VeroBrixSystem", action_type="progress", action_description="Step 2: Extracting clauses with JARVIS")
-        clauses = extract_clauses(input_text)
-        
-        # Step 3: Detect contradictions with JARVIS
-        self.provenance_logger.log_action(agent_name="VeroBrixSystem", action_type="progress", action_description="Step 3: Detecting contradictions with JARVIS")
-        contradictions = detect_contradictions(clauses)
-        
-        # Step 4: Analyze legal structure with JARVIS
-        self.provenance_logger.log_action(agent_name="VeroBrixSystem", action_type="progress", action_description="Step 4: Analyzing legal structure with JARVIS")
-        legal_structure = analyze_legal_structure(input_text)
-        
-        # Step 5: Analyze tone and risks with FRIDAY
-        self.provenance_logger.log_action(agent_name="VeroBrixSystem", action_type="progress", action_description="Step 5: Analyzing tone and risks with FRIDAY")
-        tone_analysis = interpret_tone(input_text)
-        legal_risks = analyze_legal_risk(input_text)
-        
-        # Step 6: Generate legal summary with FRIDAY
-        self.provenance_logger.log_action(agent_name="VeroBrixSystem", action_type="progress", action_description="Step 6: Generating legal summary with FRIDAY")
-        legal_summary = generate_legal_summary(input_text, tone_analysis, legal_risks)
-        
-        # Step 7: Sovereignty scoring analysis
+        # Step 3: Advanced Contradiction Detection
+        self.provenance_logger.log_action(agent_name="VeroBrixSystem", action_type="progress", action_description="Step 3: Detecting advanced contradictions")
+        contradiction_detector = ContradictionDetector(clauses)
+        contradictions = contradiction_detector.run()
+
+        # Step 4: FRIDAY Analysis (Tone, Risk, Summary)
+        self.provenance_logger.log_action(agent_name="VeroBrixSystem", action_type="progress", action_description="Step 4: Running FRIDAY analysis")
+        friday = FridayAgent(input_text, jarvis_analysis)
+        friday_analysis = friday.run_analysis()
+        tone_analysis = friday_analysis['tone']
+        # The original `verobrix_core` had a separate `analyze_legal_risk` function.
+        # Our Friday agent placeholder combines this. We'll create a compatible structure.
+        legal_risks = [{'level': friday_analysis['risk'], 'description': 'Risk assessed by FRIDAY agent.'}]
+        legal_summary = {'risk_level': friday_analysis['risk'], 'tone_summary': friday_analysis['tone'], 'summary_text': friday_analysis['summary']}
+
+        # Step 5: Sovereignty scoring analysis
         self.provenance_logger.log_action(
             action_type="sovereignty_analysis",
             action_description="Analyzing sovereignty alignment of input text",
             agent_name="SovereigntyScorer",
             input_data=input_text[:200] + "..." if len(input_text) > 200 else input_text
         )
-        
         sovereignty_metrics = self.sovereignty_scorer.score_text(input_text, context="legal_document")
-        
-        # Step 8: Synthesize remedy
-        self.provenance_logger.log_action(agent_name="VeroBrixSystem", action_type="progress", action_description="Step 8: Synthesizing remedy")
+
+        # Step 6: Synthesize remedy
+        self.provenance_logger.log_action(agent_name="VeroBrixSystem", action_type="progress", action_description="Step 6: Synthesizing remedy")
         remedy_input = {
             'type': situation.get('type'),
             'risk_level': legal_summary.get('risk_level'),
@@ -118,34 +108,33 @@ class VeroBrixSystem:
             'jurisdiction': situation.get('jurisdiction'),
             'legal_framework': situation.get('legal_framework')
         }
-        
         remedy = self.remedy_synthesizer.synthesize_remedy(remedy_input)
-        
-        # Score the remedy for sovereignty alignment
+
+        # Step 7: Score the remedy for sovereignty alignment
         remedy_sovereignty = self.sovereignty_scorer.score_decision({
             'description': remedy.get('description', ''),
             'reasoning': remedy.get('reasoning', ''),
             'recommendations': remedy.get('legal_strategies', []),
             'remedy_type': remedy.get('type', 'unknown')
         })
-        
+
         # Log comprehensive provenance entry
         self.provenance_logger.log_action(
             action_type="analysis_complete",
             action_description="Comprehensive VeroBrix analysis completed",
             agent_name="VeroBrixSystem",
             input_data={"text_length": len(input_text), "situation_type": situation.get('type')},
-            output_data={"sovereignty_score": sovereignty_metrics.overall_score, "remedy_score": remedy_sovereignty.overall_score},
-            sovereignty_score=sovereignty_metrics.overall_score,
+            output_data={"sovereignty_score": sovereignty_metrics['overall_score'], "remedy_score": remedy_sovereignty['overall_score']},
+            sovereignty_score=sovereignty_metrics['overall_score'],
             confidence_level=0.9,
             legal_context=situation.get('jurisdiction', {}).get('primary')
         )
-        
+
         # Compile comprehensive results
         results = {
             'session_id': self.session_id,
             'timestamp': datetime.now().isoformat(),
-            'system_version': 'VeroBrix v2.0 - Sovereign Modular Intelligence',
+            'system_version': 'VeroBrix v2.1 - Sovereign Cognition Engine',
             'input': {
                 'raw_text': input_text,
                 'context': situation_context
@@ -160,24 +149,8 @@ class VeroBrixSystem:
                 'legal_summary': legal_summary
             },
             'sovereignty_analysis': {
-                'input_sovereignty': {
-                    'overall_score': sovereignty_metrics.overall_score,
-                    'language_score': sovereignty_metrics.language_score,
-                    'remedy_score': sovereignty_metrics.remedy_score,
-                    'autonomy_score': sovereignty_metrics.autonomy_score,
-                    'sovereignty_level': sovereignty_metrics.sovereignty_level,
-                    'servile_flags_count': len(sovereignty_metrics.servile_flags),
-                    'sovereign_indicators_count': len(sovereignty_metrics.sovereign_indicators),
-                    'improvement_suggestions': sovereignty_metrics.improvement_suggestions
-                },
-                'remedy_sovereignty': {
-                    'overall_score': remedy_sovereignty.overall_score,
-                    'language_score': remedy_sovereignty.language_score,
-                    'remedy_score': remedy_sovereignty.remedy_score,
-                    'autonomy_score': remedy_sovereignty.autonomy_score,
-                    'sovereignty_level': remedy_sovereignty.sovereignty_level,
-                    'improvement_suggestions': remedy_sovereignty.improvement_suggestions
-                }
+                'input_sovereignty': sovereignty_metrics,
+                'remedy_sovereignty': remedy_sovereignty
             },
             'remedy': remedy,
             'recommendations': self._generate_recommendations(situation, legal_summary, remedy, sovereignty_metrics)

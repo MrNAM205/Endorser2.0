@@ -1,0 +1,9 @@
+spacy
+watchdog
+pyttsx3
+PyYAML
+psutil
+Jinja2
+Flask
+pytesseract
+reportlab

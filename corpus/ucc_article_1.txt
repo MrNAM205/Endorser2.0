@@ -1,0 +1,15 @@
+
+UCC § 1-201. GENERAL DEFINITIONS.
+
+(20) "Good faith" [...] means honesty in fact and the observance of reasonable commercial standards of fair dealing.
+
+(b) Subject to subsection (f), a person has "notice" of a fact if the person:
+(1) has actual knowledge of it;
+(2) has received a notice or notification of it; or
+(3) from all the facts and circumstances known to the person at the time in question, has reason to know that it exists.
+
+UCC § 3-302. HOLDER IN DUE COURSE.
+
+(a) [...] "holder in due course" means the holder of an instrument if:
+(1) the instrument when issued or negotiated to the holder does not bear such apparent evidence of forgery or alteration or is not otherwise so irregular or incomplete as to call into question its authenticity; and
+(2) the holder took the instrument (i) for value, (ii) in good faith, (iii) without notice that the instrument is overdue or has been dishonored or that there is an uncured default with respect to payment of another instrument issued as part of the same series, (iv) without notice that the instrument contains an unauthorized signature or has been altered, (v) without notice of any claim to the instrument described in Section 3-306, and (vi) without notice that any party has a defense or claim in recoupment described in Section 3-305(a).
