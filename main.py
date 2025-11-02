@@ -19,6 +19,11 @@ if config_manager.get('agents.dialogos.enabled', False):
 if config_manager.get('agents.echo.enabled', False):
     from modules.agent.echo_agent import echo_agent
 
+# Import sovereign invocation agents
+from modules.agent.coupon_endorser_agent import coupon_endorser_agent
+from modules.agent.semantic_warfare_agent import semantic_warfare_agent
+from modules.law.law_gathering_engine import law_gathering_engine
+
 def get_user_input(prompt):
     narrator.say(prompt)
     return input(prompt + " ")
