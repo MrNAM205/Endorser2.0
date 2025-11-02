@@ -366,9 +366,13 @@ def main_menu():
         print("12. Workflow: Endorse Payment Coupon for Discharge")
         print("13. Generate a General Affidavit of Fact")
         print("14. Look up a Legal Term")
-        print("15. Exit")
+        print("15. SOVEREIGN INVOCATION: Generate Coupon Endorsement (UCC 3-305)")
+        print("16. SOVEREIGN INVOCATION: Scan Document for Semantic Traps")
+        print("17. SOVEREIGN INVOCATION: Search Legal Authorities")
+        print("18. SOVEREIGN INVOCATION: Generate Complete Sovereign Manifest")
+        print("19. Exit")
 
-        choice = input("Enter your choice (1-15): ")
+        choice = input("Enter your choice (1-19): ")
 
         if choice == '1':
             watch_dir_name = config_manager.get('engine.watch_directory', 'intake')
