@@ -409,6 +409,14 @@ def main_menu():
         elif choice == '14':
             interactive_corpus_lookup()
         elif choice == '15':
+            run_coupon_endorsement_workflow()
+        elif choice == '16':
+            run_semantic_scan_workflow()
+        elif choice == '17':
+            run_legal_search_workflow()
+        elif choice == '18':
+            run_complete_sovereign_manifest_workflow()
+        elif choice == '19':
             narrator.say("Exiting VeroBrix Engine.")
             break
         else:
